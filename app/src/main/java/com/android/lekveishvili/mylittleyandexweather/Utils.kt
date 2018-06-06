@@ -1,4 +1,4 @@
-package com.android.lekveishvili
+package com.android.lekveishvili.mylittleyandexweather
 
 inline fun Double.tempToString(): String {
     return if (this > 0) {

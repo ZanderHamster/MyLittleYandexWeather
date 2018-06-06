@@ -2,9 +2,8 @@ package com.android.lekveishvili.mylittleyandexweather.fragments
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.support.v7.widget.Toolbar
+import android.view.*
 import com.android.lekveishvili.mylittleyandexweather.MainActivity
 import com.android.lekveishvili.mylittleyandexweather.MyApplication
 import com.android.lekveishvili.mylittleyandexweather.R
@@ -25,16 +24,20 @@ class MainFragment : BindingFragment<MainFragmentViewModel>() {
         val view = binding.root
 
         viewModel = MainFragmentViewModel(repository, (activity as MainActivity))
-
-
+        viewModel.title = resources.getString(R.string.app_name)
         binding.viewModel = viewModel
         viewModel.loadData()
-        setHasOptionsMenu(true)
+        setupToolbar()
         return view
+    }
+
+    private fun setupToolbar() {
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.router.openMain()
     }
+
 }

@@ -3,7 +3,6 @@ package com.android.lekveishvili.mylittleyandexweather
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import com.android.lekveishvili.mylittleyandexweather.model.WeatherFiveDaysRequest
-import com.android.lekveishvili.tempToString
 
 class CityViewModel(@Bindable val name: String = "",
                     @Bindable val description: String = "",

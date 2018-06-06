@@ -12,12 +12,13 @@ data class WeatherFiveDaysRequest(
 
     fun getFirstDay() = list[0]
 
-    fun getSecondDay() = list.reversed()[10]
+    fun getSecondDay() = list.reversed()[18]
 
-    fun getThirdDay() = list.reversed()[2]
+    fun getThirdDay() = list.reversed()[10]
 
     data class WeatherFiveDayItem(
-            @SerializedName("dt") val dt: Int = 0,
+            @SerializedName("dt") val dt: Long = 0,
+            @SerializedName("dt_txt") val dtStr: String = "",
             @SerializedName("main") val main: WeatherMain = WeatherMain(),
             @SerializedName("weather") val weather: List<Weather> = emptyList())
 

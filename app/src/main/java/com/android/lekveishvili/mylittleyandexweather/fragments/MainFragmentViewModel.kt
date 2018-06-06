@@ -1,6 +1,7 @@
 package com.android.lekveishvili.mylittleyandexweather.fragments
 
 import android.databinding.ObservableArrayList
+import android.view.View
 import com.android.lekveishvili.mylittleyandexweather.BR
 import com.android.lekveishvili.mylittleyandexweather.CityViewModel
 import com.android.lekveishvili.mylittleyandexweather.R
@@ -87,10 +88,10 @@ class MainFragmentViewModel(private val repository: NetDataRepository,
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError {
-                    error = true
+                    error = View.VISIBLE
                 }
                 .doOnSubscribe({
-                    error = false
+                    error = View.GONE
                 })
                 .subscribe({
                     val weather = it.getFirstDay().weather
@@ -100,8 +101,8 @@ class MainFragmentViewModel(private val repository: NetDataRepository,
                         description = tmpDescription
                     }
                     items.add(CityViewModel(
-                            description,
                             it.city.name,
+                            description,
                             listOf(it.getFirstDay(), it.getSecondDay(), it.getThirdDay()),
                             { openCity(it.city.id.toString()) }
                     ))

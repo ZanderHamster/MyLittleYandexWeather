@@ -1,9 +1,10 @@
 package com.android.lekveishvili.mylittleyandexweather
 
+import android.content.Context
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.app.Fragment
+import android.view.inputmethod.InputMethodManager
 import com.android.lekveishvili.mylittleyandexweather.data.NetDataRepository
 import com.android.lekveishvili.mylittleyandexweather.databinding.ActivityMainBinding
 import com.android.lekveishvili.mylittleyandexweather.fragments.CityFragment
@@ -43,22 +44,23 @@ class MainActivity : BindingActivity<MainActivityViewModel>(), Router {
     }
 
     override fun openCity(cityId: String) {
-        cityFragment.arguments?.putString(CITY_ID, cityId)
+        val bundle = Bundle()
+        bundle.putString(CITY_ID, cityId)
+        cityFragment.arguments = bundle
         replaceFragment(cityFragment)
+    }
+    fun hideKeyboard() {
+        val view = this.currentFocus
+        if (view != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
     private fun replaceFragment(newFragment: Fragment) {
-//        if (currentFragment === newFragment) return
+        hideKeyboard()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, newFragment)
         transaction.commit()
-//        Handler().postDelayed({
-//            try {
-//                val transaction = supportFragmentManager.beginTransaction()
-//                transaction.replace(R.id.fragment_container, newFragment)
-//                transaction.commit()
-//            } catch (e: Exception) {
-//            }
-//        }, 300)
     }
 }
