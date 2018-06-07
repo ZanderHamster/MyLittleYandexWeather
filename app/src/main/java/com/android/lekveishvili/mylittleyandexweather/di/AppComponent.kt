@@ -1,9 +1,9 @@
 package com.android.lekveishvili.mylittleyandexweather.di
 
 import com.android.lekveishvili.mylittleyandexweather.MainActivity
-import com.android.lekveishvili.mylittleyandexweather.fragments.CityFragment
-import com.android.lekveishvili.mylittleyandexweather.fragments.MainFragment
-import com.android.lekveishvili.mylittleyandexweather.fragments.SearchFragment
+import com.android.lekveishvili.mylittleyandexweather.fragments.city.CityFragment
+import com.android.lekveishvili.mylittleyandexweather.fragments.main.MainFragment
+import com.android.lekveishvili.mylittleyandexweather.fragments.search.SearchFragment
 import dagger.Component
 import javax.inject.Singleton
 

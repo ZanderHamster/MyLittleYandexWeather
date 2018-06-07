@@ -1,8 +1,8 @@
-package com.android.lekveishvili.mylittleyandexweather.fragments
+package com.android.lekveishvili.mylittleyandexweather.fragments.main
 
+import android.content.Context
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.widget.Toolbar
 import android.view.*
 import com.android.lekveishvili.mylittleyandexweather.MainActivity
 import com.android.lekveishvili.mylittleyandexweather.MyApplication
@@ -25,6 +25,7 @@ class MainFragment : BindingFragment<MainFragmentViewModel>() {
 
         viewModel = MainFragmentViewModel(repository, (activity as MainActivity))
         viewModel.title = resources.getString(R.string.app_name)
+        viewModel.list = getCitiesList()
         binding.viewModel = viewModel
         viewModel.loadData()
         setupToolbar()
@@ -33,6 +34,17 @@ class MainFragment : BindingFragment<MainFragmentViewModel>() {
 
     private fun setupToolbar() {
 
+    }
+
+    private fun getCitiesList(): List<String> {
+        val list: MutableList<String> = arrayListOf()
+        val sharedPreferences = activity?.getSharedPreferences("PREFS", Context.MODE_PRIVATE)
+        sharedPreferences?.let {
+            sharedPreferences.all.forEach {
+                list.add(it.value.toString())
+            }
+        }
+        return list
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

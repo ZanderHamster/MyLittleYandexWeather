@@ -1,9 +1,8 @@
 package com.android.lekveishvili.mylittleyandexweather.data
 
-import com.android.lekveishvili.mylittleyandexweather.model.CurrentWeather
-import com.android.lekveishvili.mylittleyandexweather.model.CurrentWeatherCities
-import com.android.lekveishvili.mylittleyandexweather.model.FindCitiesId
-import com.android.lekveishvili.mylittleyandexweather.model.WeatherFiveDaysRequest
+import com.android.lekveishvili.mylittleyandexweather.data.model.CurrentWeatherCities
+import com.android.lekveishvili.mylittleyandexweather.data.model.FindCitiesId
+import com.android.lekveishvili.mylittleyandexweather.data.model.WeatherFiveDaysRequest
 import io.reactivex.Single
 
 class NetDataRepository(private val netDataApi: NetDataApi) {
@@ -11,10 +10,6 @@ class NetDataRepository(private val netDataApi: NetDataApi) {
         const val API_KEY = "7103f6e02f1aefa4663439a9c5856970"
         const val lang = "ru"
         const val metric = "metric"
-    }
-
-    fun getCurrentWeatherByCity(city: String): Single<CurrentWeather> {
-        return netDataApi.getCurrentWeather(city, API_KEY, lang, metric)
     }
 
     fun getCurrentWeatherGroup(ids: String): Single<CurrentWeatherCities> {

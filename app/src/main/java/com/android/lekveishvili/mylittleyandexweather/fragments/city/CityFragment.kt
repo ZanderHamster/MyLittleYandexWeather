@@ -1,4 +1,4 @@
-package com.android.lekveishvili.mylittleyandexweather.fragments
+package com.android.lekveishvili.mylittleyandexweather.fragments.city
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -18,14 +18,15 @@ import javax.inject.Inject
 class CityFragment : BindingFragment<CityFragmentViewModel>() {
     @Inject
     lateinit var repository: NetDataRepository
-
+    private var cityId = ""
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         MyApplication.appComponent.inject(this)
-        viewModel = CityFragmentViewModel(repository)
+        cityId = arguments?.getString(CITY_ID)!!
+        viewModel = CityFragmentViewModel(repository, { removeCity(cityId) })
         val binding = DataBindingUtil.inflate<FragmentCityBinding>(
                 inflater, R.layout.fragment_city, container, false)
         binding.viewModel = viewModel
-        viewModel.cityId = arguments?.getString(CITY_ID)!!
+        viewModel.cityId = cityId
         viewModel.loadData()
         setupToolbar(binding.root.findViewById(R.id.toolbar))
 
@@ -37,6 +38,9 @@ class CityFragment : BindingFragment<CityFragmentViewModel>() {
         toolbar.setNavigationOnClickListener {
             (activity as MainActivity).openMain()
         }
+    }
 
+    fun removeCity(id: String) {
+        (activity as MainActivity).removeCity(id)
     }
 }

@@ -1,4 +1,4 @@
-package com.android.lekveishvili.mylittleyandexweather.model
+package com.android.lekveishvili.mylittleyandexweather.data.model
 
 import com.google.gson.annotations.SerializedName
 

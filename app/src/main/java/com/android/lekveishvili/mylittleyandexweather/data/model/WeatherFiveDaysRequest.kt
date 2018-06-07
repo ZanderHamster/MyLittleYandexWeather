@@ -1,4 +1,4 @@
-package com.android.lekveishvili.mylittleyandexweather.model
+package com.android.lekveishvili.mylittleyandexweather.data.model
 
 import com.google.gson.annotations.SerializedName
 
@@ -6,7 +6,7 @@ data class WeatherFiveDaysRequest(
         @SerializedName("cod") val cod: String = "",
         @SerializedName("message") val message: Double = 0.0,
         @SerializedName("cnt") val cnt: Int = 0,
-        @SerializedName("list") val list: List<WeatherFiveDayItem> = emptyList(),
+        @SerializedName("list") private val list: List<WeatherFiveDayItem> = emptyList(),
         @SerializedName("city") val city: City = WeatherFiveDaysRequest.City()
 ) {
 
