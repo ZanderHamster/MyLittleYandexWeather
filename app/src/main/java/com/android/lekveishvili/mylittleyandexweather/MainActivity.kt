@@ -40,7 +40,7 @@ class MainActivity : BindingActivity<MainActivityViewModel>(), Router {
 
         val cities = sharedPreferences.all
         if (!cities.containsValue(MOSCOW)) {
-            sharedPreferences.edit().putString(SAINT_PETERSBURG, MOSCOW).apply()
+            sharedPreferences.edit().putString(MOSCOW, MOSCOW).apply()
         }
         if (!cities.containsValue(SAINT_PETERSBURG)) {
             sharedPreferences.edit().putString(SAINT_PETERSBURG, SAINT_PETERSBURG).apply()
